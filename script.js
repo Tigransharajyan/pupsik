@@ -6,6 +6,15 @@ const nav = document.querySelector(".branch-nav");
 
 const sectionMap = new Map(branchLinks.map((link) => [link.dataset.target, link]));
 
+const usesStickyNav = () => {
+  if (!nav) {
+    return false;
+  }
+
+  const navPosition = window.getComputedStyle(nav).position;
+  return navPosition === "sticky" || navPosition === "fixed";
+};
+
 const setActiveLink = (id) => {
   branchLinks.forEach((link) => {
     const isActive = link.dataset.target === id;
@@ -21,7 +30,7 @@ const setActiveLink = (id) => {
 };
 
 const getScrollTarget = (section) => {
-  const navHeight = nav ? nav.offsetHeight : 0;
+  const navHeight = usesStickyNav() && nav ? nav.offsetHeight : 0;
   const offset = 24;
   return section.getBoundingClientRect().top + window.scrollY - navHeight - offset;
 };
