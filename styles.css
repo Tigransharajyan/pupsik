@@ -1045,7 +1045,9 @@ body.is-scrolled .branch-nav__shell {
   }
 
   .branch-nav {
-    top: 10px;
+    position: static;
+    top: auto;
+    margin-top: 14px;
   }
 
   .branch-nav__shell {
